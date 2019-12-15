@@ -59,7 +59,10 @@ class App extends React.Component {
                         <PlaylistPanel setCurView={this.setCurView} setCurPlaylist={this.setCurPlaylist}/>
                     </Grid>
                     <Grid item xs={9} style={{paddingLeft: '35px'}}>
-                        {this.state.curView === 'search' && (<SearchView />)}
+                        {this.state.curView === 'search' && (<SearchView 
+                            playlist={this.state.curPlaylist}
+                            setCurView={this.setCurView}/>)}
+                        />)}
                         {this.state.curView === 'playlistList' && (<PlaylistList 
                             playlists={data.getPlaylists()}
                             setCurPlaylist={this.setCurPlaylist}

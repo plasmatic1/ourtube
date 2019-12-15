@@ -8,8 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import Language from '@material-ui/icons/Language';
+import LanguageIcon from '@material-ui/icons/Language';
+import AddIcon from '@material-ui/icons/Add';
 
 class SearchResult {
     constructor(title, description, channel, thumbnailUrl, videoId) {
@@ -76,10 +76,12 @@ export default class SearchView extends React.Component {
                     </Grid>
                     <Grid key={2} item xs={1}>
                         <Link href={res.getVideoLink()}>
-                            <Language />
+                            <LanguageIcon />
                         </Link>
                         <Link>
-                            <GetAppIcon />
+                            <AddIcon onClick={() => {
+                                   
+                            }/>
                         </Link>
                     </Grid>
                 </Grid>
