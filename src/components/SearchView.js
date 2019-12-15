@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import LanguageIcon from '@material-ui/icons/Language';
 import AddIcon from '@material-ui/icons/Add';
+const fs = window.require('fs')
+const youtubedl = window.require('youtube-dl')
 
 class SearchResult {
     constructor(title, description, channel, thumbnailUrl, videoId) {
@@ -21,7 +23,23 @@ class SearchResult {
     }
 
     getVideoLink() {
-        return `https://www.youtube.com/watch?v=${this.videoId}`;
+        return ''
+    }
+
+    downloadVideo(){
+        const video = youtubedl(`https://www.youtube.com/watch?v=${this.videoId}`,
+        // Optional arguments passed to youtube-dl.
+        ['--format=18'],
+        // Additional options can be given for calling `child_process.execFile()`.
+        { cwd: __dirname })
+
+        // Will be called when the download starts.
+        video.on('info', function(info) {
+        console.log('Download started')
+        console.log('filename: ' + info._filename)
+        console.log('size: ' + info.size)
+        })
+        video.pipe(fs.createWriteStream('./src/tracks/'+this.title+'.mp3'))
     }
 }
 
@@ -78,10 +96,10 @@ export default class SearchView extends React.Component {
                         <Link href={res.getVideoLink()}>
                             <LanguageIcon />
                         </Link>
-                        <Link>
+                        <Link href={res.downloadVideo()}>
                             <AddIcon onClick={() => {
                                    
-                            }/>
+                            }} />
                         </Link>
                     </Grid>
                 </Grid>
