@@ -13,7 +13,7 @@ class PlaylistPanel extends React.Component {
         this.props.testFn();
     }
 
-     render() {
+    render() {
         return (
             <div className={"playlistPanel"}>
                 <div className={"logo"}>
@@ -29,7 +29,7 @@ class PlaylistPanel extends React.Component {
                 </ul>
             </div>
         )
-     }
- }
+    }
+}
 
- export default PlaylistPanel;
+export default PlaylistPanel;
