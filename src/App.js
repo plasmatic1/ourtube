@@ -10,6 +10,27 @@ const fs = window.require("fs");
 
 class App extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            searchView: false
+        };
+
+        this.showSearchView = this.showSearchView.bind(this);
+        this.testToggle = this.testToggle.bind(this);
+    }
+
+    showSearchView() {
+        return this.state.searchView;
+    }
+
+    testToggle() {
+        this.setState({
+            searchView: !this.state.searchView
+        });
+    }
+
     render() {
         //Generate list of all playlists
         var playlistObj = JSON.parse(fs.readFileSync("./src/data/playlists.json"));
@@ -18,15 +39,14 @@ class App extends React.Component {
             <div className="App">
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <PlaylistPanel />
+                        <PlaylistPanel testFn={this.testToggle}/>
                     </Grid>
-                    <Grid item xs={9} style={{
-                        paddingLeft: '35px'
-                    }}>
-                        <SearchView />
-                    </Grid>
+                    {this.state.searchView &&
+                        (<Grid item xs={9} style={{paddingLeft: '35px'}}>
+                        <SearchView/>
+                    </Grid>)}
                 </Grid>
-                <PlaylistList playlists={playlistObj.playlists} />
+                {!this.state.searchView && (<PlaylistList playlists={playlistObj.playlists} />)}
             </div>
         );
     }

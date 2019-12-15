@@ -25,11 +25,14 @@ class SearchResult {
 }
 
 export default class SearchView extends React.Component {
-    state = {
-        searchResults: [],
-        curSearchQuery: ''
-    }
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            searchResults: [],
+            curSearchQuery: '',
+        }
+    }
     componentDidMount() {
 
     }

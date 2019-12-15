@@ -3,6 +3,16 @@ import './PlaylistPanel.css';
 import logo from "../static/logo.png"
 
 class PlaylistPanel extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.addPlaylist = this.addPlaylist.bind(this);
+    }
+
+    addPlaylist() {
+        this.props.testFn();
+    }
+
      render() {
         return (
             <div className={"playlistPanel"}>
@@ -13,7 +23,7 @@ class PlaylistPanel extends React.Component {
                     Options
                 </div>
                 <ul className={"optionsContainer"}>
-                    <li>Add Playlist</li>
+                    <li onClick={this.addPlaylist}>Add Playlist</li>
                     <li>Edit Playlist</li>
                     <li>Remove Playlist</li>
                 </ul>
