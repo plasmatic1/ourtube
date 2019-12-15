@@ -34,12 +34,16 @@ class SearchResult {
         { cwd: __dirname })
 
         // Will be called when the download starts.
+        if (!fs.existsSync('./data')) fs.mkdirSync('./data');
+        if (!fs.existsSync('./data/tracks')) fs.mkdirSync('./data/tracks');
+        
         video.on('info', function(info) {
-        console.log('Download started')
-        console.log('filename: ' + info._filename)
-        console.log('size: ' + info.size)
-        })
-        video.pipe(fs.createWriteStream('./src/tracks/'+this.title+'.mp3'))
+            console.log('Download started')
+            console.log('filename: ' + info._filename)
+            console.log('size: ' + info.size)
+        });
+
+        video.pipe(fs.createWriteStream('./data/tracks/'+this.title+'.mp3'));
     }
 }
 
@@ -96,9 +100,16 @@ export default class SearchView extends React.Component {
                         <Link href={res.getVideoLink()}>
                             <LanguageIcon />
                         </Link>
-                        <Link href={res.downloadVideo()}>
+                        <Link>
                             <AddIcon onClick={() => {
-                                   
+                                res.downloadVideo();
+                                let track = {
+                                    name: res.title,
+                                    author: res.channel,
+                                    path: `src/tracks/${res.title}-${res.videoId}.mp3`
+                                };
+                                this.props.addCurPlaylistTrack(track);
+                                this.props.setCurView('playlistEdit');
                             }} />
                         </Link>
                     </Grid>

@@ -6,7 +6,6 @@ import './App.css';
 import Grid from '@material-ui/core/Grid';
 import * as data from './util/data';
 import { PlaylistEdit } from './components/PlaylistEdit';
-import audio from "./tracks/That Person's Name Is - Bravely Default OST [Asterisk Boss Battle Theme](High Quality 1080p HD)-sk-9ihcy2R8.mp3"
 
 class App extends React.Component {
     /*
@@ -21,13 +20,14 @@ class App extends React.Component {
 
         this.state = {
             curView: 'playlistList',
-            playing: audio
+            playing: undefined
         };
 
         this.setCurView = this.setCurView.bind(this);
         this.setPlaying = this.setPlaying.bind(this);
         this.setCurPlaylist = this.setCurPlaylist.bind(this);
         this.setCurPlaylistName = this.setCurPlaylistName.bind(this);
+        this.addCurPlaylistTrack = this.addCurPlaylistTrack.bind(this);
 
         this.playlistEditRef = React.createRef();
     }
@@ -39,6 +39,7 @@ class App extends React.Component {
     setPlaying(src) {
         this.setState({ playing: src});
     }
+
     setCurPlaylist(curPlaylist) {
         return new Promise(res => {
             this.setState({ curPlaylist }, res);
@@ -48,6 +49,12 @@ class App extends React.Component {
     setCurPlaylistName(newName) {
         let newCurPlaylist = this.state.curPlaylist;
         newCurPlaylist.name = newName;
+        this.setState({ curPlaylist: newCurPlaylist });
+    }
+
+    addCurPlaylistTrack(obj) {
+        let newCurPlaylist = this.state.curPlaylist;
+        newCurPlaylist.tracks.push(obj);
         this.setState({ curPlaylist: newCurPlaylist });
     }
 
@@ -61,8 +68,9 @@ class App extends React.Component {
                     <Grid item xs={9} style={{paddingLeft: '35px'}}>
                         {this.state.curView === 'search' && (<SearchView 
                             playlist={this.state.curPlaylist}
-                            setCurView={this.setCurView}/>)}
-                        />)}
+                            setCurView={this.setCurView}
+                            addCurPlaylistTrack={this.addCurPlaylistTrack}
+                        />)} 
                         {this.state.curView === 'playlistList' && (<PlaylistList 
                             playlists={data.getPlaylists()}
                             setCurPlaylist={this.setCurPlaylist}
