@@ -11,7 +11,8 @@ function createWindow () {
         height: 720,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        icon: path.join(__dirname, 'logo512.png')
     });
     mainWindow.loadURL(
         isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
