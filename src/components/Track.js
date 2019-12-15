@@ -7,8 +7,8 @@ class Track extends React.Component {
 
     render() {
         return (
-        <div>
-            <h3>{this.props.options.name}</h3>
+        <div onClick={() => this.props.setPlaying("/static/media/" + this.props.options.path)}>
+            <h3>{this.props.options.name}</h3>t
             <p>{this.props.options.author}</p>
         </div>
         )
