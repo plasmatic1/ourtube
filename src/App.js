@@ -56,7 +56,7 @@ class App extends React.Component {
                     <Grid item xs={9} style={{paddingLeft: '35px'}}>
                         {this.state.curView === 'search' && (<SearchView />)}
                         {this.state.curView === 'playlistList' && (<PlaylistList playlists={data.getPlaylists()} setCurPlaylist={this.setCurPlaylist} setCurView={this.setCurView}/>)}
-                        {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlist={this.state.curPlaylist} setCurPlaylistName={this.setCurPlaylistName}/>)}
+                        {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlist={this.state.curPlaylist} setCurPlaylistName={this.setCurPlaylistName} setCurView={this.setCurView}/>)}
                     </Grid>    
                 </Grid>
             </div>

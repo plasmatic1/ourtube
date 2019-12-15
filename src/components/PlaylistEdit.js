@@ -1,13 +1,12 @@
 import React from 'react';
-import { TextField, Paper, Typography, Grid, ListItem, Container } from '@material-ui/core';
+import { Button, TextField, Paper, Typography, Grid, ListItem, Container } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import LanguageIcon from '@material-ui/icons/Language';
 import * as data from '../util/data';
 
 export class PlaylistEdit extends React.Component {
     constructor(props) {
         super(props);
-
-        this.nameInputRef = React.createRef();
     }
 
     renderTracks() {
@@ -59,10 +58,16 @@ export class PlaylistEdit extends React.Component {
                     <Paper style={{
                         padding: '10px'
                     }}>
-                        <TextField label="Name" variant="outlined" value={this.props.playlist.name} ref={this.nameInputRef} onChange={e => {
+                        <TextField label="Name" variant="outlined" value={this.props.playlist.name} onChange={e => {
                             this.props.setCurPlaylistName(e.target.value);
                             // data.save();
                         }}/>
+                        <Button variant="contained" onClick={() => this.props.setCurView('search')} style={{
+                            marginLeft: '10px',
+                            marginTop: '8px'
+                        }}>
+                            Add More Songs <LanguageIcon />
+                        </Button>
                     </Paper>
                     <Paper style={{
                         marginTop: '7px',
