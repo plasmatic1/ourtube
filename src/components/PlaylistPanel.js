@@ -10,7 +10,7 @@ class PlaylistPanel extends React.Component {
     }
 
     addPlaylist() {
-        this.props.toggleSearchView();
+        this.props.setCurView('search');
     }
 
     render() {

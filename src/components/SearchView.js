@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import Language from '@material-ui/icons/Language';
 
 class SearchResult {
     constructor(title, description, channel, thumbnailUrl, videoId) {
@@ -75,6 +76,9 @@ export default class SearchView extends React.Component {
                     </Grid>
                     <Grid key={2} item xs={1}>
                         <Link href={res.getVideoLink()}>
+                            <Language />
+                        </Link>
+                        <Link>
                             <GetAppIcon />
                         </Link>
                     </Grid>
