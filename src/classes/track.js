@@ -16,8 +16,8 @@ class Track{
 
 /*
  EXAMPLE USAGE:
-*/
 const t = new Track(65, 'Justin Beiber', 'Despacito');
 console.log(t.length); //prints "1: 05"
 console.log(t.artist)
 console.log(t.name)
+*/
