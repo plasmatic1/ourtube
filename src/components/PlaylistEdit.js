@@ -7,7 +7,6 @@ export class PlaylistEdit extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.setNameInputVal = this.setNameInputVal.bind(this);
         this.nameInputRef = React.createRef();
     }
 
@@ -35,10 +34,10 @@ export class PlaylistEdit extends React.Component {
             });
         }
     }
-    
+
     render() {
         let playlistRender;
-        if (this.props.playlist === null) {
+        if (this.props.playlist === null || this.props.playlist === undefined) {
             playlistRender = (
                 <Container style={{
                     marginLeft: '0px',
@@ -54,15 +53,21 @@ export class PlaylistEdit extends React.Component {
         }
         else {
             playlistRender = (
-                <Container>
-                    <Paper>
+                <Container style={{
+                    marginTop: '10px'
+                }}>
+                    <Paper style={{
+                        padding: '10px'
+                    }}>
                         <TextField label="Name" variant="outlined" value={this.props.playlist.name} ref={this.nameInputRef} onChange={e => {
-                            this.props.playlist.name = e.target.value;
-                            this.nameInputRef.current.props.value = e.target.value;
+                            this.props.setCurPlaylistName(e.target.value);
                             // data.save();
                         }}/>
                     </Paper>
-                    <Paper>
+                    <Paper style={{
+                        marginTop: '7px',
+                        padding: '10px'
+                    }}>
                         {this.renderTracks()}
                     </Paper>
                 </Container>
