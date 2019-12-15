@@ -35,8 +35,8 @@ class PlaylistList extends React.Component {
                                         }}/>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
-                                        {v.tracks.map((v, i) => (
-                                            <Track options={v} key={i}/>
+                                        {v.tracks.map((v,i) => (
+                                            <Track options={v} setPlaying={this.props.setPlaying} key={i} />
                                         ))}
                                     </ExpansionPanelDetails>
                             </ExpansionPanel>
