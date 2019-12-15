@@ -14,20 +14,23 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            searchView: false
+            searchView: false,
+            addPlaylistView: false
         };
 
-        this.showSearchView = this.showSearchView.bind(this);
-        this.testToggle = this.testToggle.bind(this);
+        this.toggleSearchView = this.toggleSearchView.bind(this);
+        this.toggleAddPlaylistView = this.toggleAddPlaylistView.bind(this);
     }
 
-    showSearchView() {
-        return this.state.searchView;
-    }
-
-    testToggle() {
+    toggleSearchView() {
         this.setState({
             searchView: !this.state.searchView
+        });
+    }
+
+    toggleAddPlaylistView() {
+        this.setState({
+            addPlaylistView: !this.state.addPlaylistView
         });
     }
 
@@ -39,14 +42,14 @@ class App extends React.Component {
             <div className="App">
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <PlaylistPanel testFn={this.testToggle}/>
+                        <PlaylistPanel toggleSearchView={this.toggleSearchView} addPlaylistView={this.toggleAddPlaylistView}/>
                     </Grid>
                     {this.state.searchView &&
                         (<Grid item xs={9} style={{paddingLeft: '35px'}}>
                         <SearchView/>
                     </Grid>)}
                 </Grid>
-                {!this.state.searchView && (<PlaylistList playlists={playlistObj.playlists} />)}
+                {!this.state.searchView && !this.state.addPlaylistView && (<PlaylistList playlists={playlistObj.playlists} />)}
             </div>
         );
     }
