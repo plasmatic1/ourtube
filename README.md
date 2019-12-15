@@ -1,3 +1,13 @@
+# OurTube
+
+![OurTube Logo](https://files.catbox.moe/sht8j9.png)
+
+OurTube is a project aiming to remove the divide between the monetarily affluent and the ones that lack sufficient funds for expensive essential services such as Spotify Prenium and YouTube Music.  As it is a product for the people, by the people, it will stay open source and free.
+
+Thank you for attending my TED talk! :)
+
+# Infos
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
