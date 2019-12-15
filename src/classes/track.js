@@ -1,11 +1,11 @@
-class track{
-    thumbnail; //the url to the image
+class Track{
     length; //length of the song
     artist; //name of the artist
+    name;
 
-    constructor(thumbnail, length, artist){
-        this.thumbnail = thumbnail;
+    constructor(length, artist, name){
         this.length = length;
         this.artist = artist;
+        this.name = name;
     }
 }
