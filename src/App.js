@@ -5,12 +5,16 @@ import './App.css';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 
+import PlaylistList
+    from "./components/PlaylistList";
+const fs = window.require("fs");
+
 class App extends React.Component {
-    state = {
-        searchResp: undefined
-    }
 
     render() {
+        //Generate list of all playlists
+        var playlistObj = JSON.parse(fs.readFileSync("./src/data/playlists.json"));
+
         return (
             <div className="App">
                 <Grid container spacing={3}>
@@ -23,6 +27,7 @@ class App extends React.Component {
                         <SearchView />
                     </Grid>
                 </Grid>
+                <PlaylistList playlists={playlistObj.playlists} />
             </div>
         );
     }
