@@ -5,11 +5,11 @@ class Track{
         const hours = () => {
             return String(Math.floor(length/60)) 
         };
-        const minutes = () =>{
+        const minutes = () => {
             if (length%60 < 10)
                 return '0' + String(length%60)
             return String(length%60)
-        }
+        };
         this.length = hours() + ': ' + minutes();
     }
 }

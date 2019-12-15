@@ -3,7 +3,11 @@
     {
       "name": "Bob",
       "tracks": [
-        "Prelude Moving Toward Hope - Bravely Default OST (High Quality 1080p HD)-gQ6wCHHY8Yc.mp3"
+        {
+          "name": "Song",
+          "author": "Me",
+          "path": "That Person's Name Is - Bravely Default OST [Asterisk Boss Battle Theme](High Quality 1080p HD)-sk-9ihcy2R8"
+        }
       ]
     }
   ]
