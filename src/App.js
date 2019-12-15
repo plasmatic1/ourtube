@@ -16,17 +16,25 @@ class App extends React.Component {
     */
 
     state = {
-        curView: 'playlistList'
+        curView: 'playlistEdit',
+        curPlaylist: null
     }
 
     constructor(props) {
         super(props);
 
         this.setCurView = this.setCurView.bind(this);
+        this.setCurPlaylist = this.setCurPlaylist.bind(this);
+
+        this.playlistEditRef = React.createRef();
     }
 
     setCurView(curView) {
         this.setState({ curView });
+    }
+
+    setCurPlaylist(curPlaylist) {
+        this.setState({ curPlaylist });
     }
 
     render() {
@@ -34,15 +42,14 @@ class App extends React.Component {
             <div className="App">
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <PlaylistPanel setCurView={this.setCurView}/>
+                        <PlaylistPanel setCurView={this.setCurView} setCurPlaylist={this.setCurPlaylist}/>
                     </Grid>
-                    {this.state.curView === 'search' &&
-                        (<Grid item xs={9} style={{paddingLeft: '35px'}}>
-                        <SearchView/>
-                    </Grid>)}
+                    <Grid item xs={9} style={{paddingLeft: '35px'}}>
+                        {this.state.curView === 'search' && (<SearchView />)}
+                        {this.state.curView === 'playlistList' && (<PlaylistList playlists={data.getPlaylists()} />)}
+                        {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlist={this.state.curPlaylist} ref={this.playlistEditRef} />)}
+                    </Grid>    
                 </Grid>
-                {this.state.curView === 'playlistList' && (<PlaylistList playlists={data.getPlaylists()} />)}
-                {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlists={data.getPlaylists()} />)}
             </div>
         );
     }

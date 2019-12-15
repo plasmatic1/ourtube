@@ -3,14 +3,14 @@ import "./PlaylistList.css"
 
 class PlaylistList extends React.Component {
     constructor(props) {
-        super();
+        super(props);
     }
     render() {
         return (
             <ul className={"playlistContainer"}>
                 {
                     this.props.playlists.map((v, i) => (
-                        <li>
+                        <li key={i}>
                             <h1>{v.name}</h1>
                         </li>
                     ))

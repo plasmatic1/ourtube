@@ -38,10 +38,13 @@ export function getPlaylists() {
 
 export function addPlaylist(list) {
     if (isUndefined(data)) reloadData();
+    
     data.playlists.push(list);
 }
 
 export function makeNewPlaylist() {
+    if (isUndefined(data)) reloadData();
+    
     let playlist = {
         name: `New Playlist ${data.playlists.length}`,
         tracks: []
