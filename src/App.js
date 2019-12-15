@@ -3,7 +3,6 @@ import SearchView from './components/SearchView';
 import PlaylistPanel from "./components/PlaylistPanel";
 import './App.css';
 import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
 
 import PlaylistList
     from "./components/PlaylistList";

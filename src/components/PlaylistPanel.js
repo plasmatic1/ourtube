@@ -7,7 +7,7 @@ class PlaylistPanel extends React.Component {
         return (
             <div className={"playlistPanel"}>
                 <div className={"logo"}>
-                    <img src={logo} />
+                    <img src={logo} alt="OurTube logo"/>
                 </div>
                 <div className={"header"}>
                     Options
