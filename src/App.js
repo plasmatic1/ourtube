@@ -5,6 +5,7 @@ import PlaylistList from "./components/PlaylistList";
 import './App.css';
 import Grid from '@material-ui/core/Grid';
 import * as data from './util/data';
+import { PlaylistEdit } from './components/PlaylistEdit';
 
 class App extends React.Component {
     /*
@@ -40,7 +41,8 @@ class App extends React.Component {
                         <SearchView/>
                     </Grid>)}
                 </Grid>
-                {this.curView === 'playlistEdit' && (<PlaylistList playlists={data.get()} />)}
+                {this.state.curView === 'playlistList' && (<PlaylistList playlists={data.getPlaylists()} />)}
+                {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlists={data.getPlaylists()} />)}
             </div>
         );
     }
