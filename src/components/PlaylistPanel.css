@@ -1,0 +1,28 @@
+.playlistPanel {
+  color: white;
+  background-color: #343434;
+  width: 350px;
+  height: 100%;
+  position: fixed;
+}
+.playlistPanel img {
+  width: 100%;
+}
+.playlistPanel .header {
+  text-align: center;
+  margin-top: 0;
+  font-size: 200%;
+}
+.playlistPanel .optionsContainer {
+  padding-left: 0;
+  text-align: center;
+  list-style-type: none;
+}
+.playlistPanel .optionsContainer li {
+  background-color: #4d4d4d;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.playlistPanel .optionsContainer li:hover {
+  background-color: #343434;
+}

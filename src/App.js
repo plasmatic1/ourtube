@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchView from './components/SearchView';
-import * as search from './util/search';
-import { isUndefined } from 'util';
+import PlaylistPanel from "./components/PlaylistPanel";
 import './App.css';
 
 class App extends React.Component {
@@ -12,6 +11,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <PlaylistPanel />
                 <SearchView />
             </div>
         );
