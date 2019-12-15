@@ -8,11 +8,16 @@ class PlaylistPanel extends React.Component {
         super(props);
 
         this.addPlaylist = this.addPlaylist.bind(this);
+        this.back = this.back.bind(this);
     }
 
     addPlaylist() {
         this.props.setCurView('playlistEdit');
         this.props.setCurPlaylist(data.makeNewPlaylist());
+    }
+
+    back() {
+        this.props.setCurView('playlistList');
     }
 
     render() {
@@ -28,6 +33,7 @@ class PlaylistPanel extends React.Component {
                     <li onClick={this.addPlaylist}>Add Playlist</li>
                     <li onClick={() => this.props.setCurView('playlistList')}>Select Playlist</li>
                     <li>Remove Playlist</li>
+                    <li onClick={this.back}>Back</li>
                 </ul>
             </div>
         )
