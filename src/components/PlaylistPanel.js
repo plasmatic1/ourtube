@@ -1,6 +1,7 @@
 import React from 'react';
 import './PlaylistPanel.css';
-import logo from "../static/logo.png"
+import logo from "../static/logo.png";
+import * as data from '../util/data';
 
 class PlaylistPanel extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class PlaylistPanel extends React.Component {
     }
 
     addPlaylist() {
-        this.props.setCurView('search');
+        this.props.setCurView('playlistEdit');
+        this.props.setCurPlaylist(data.makeNewPlaylist());
     }
 
     back() {
@@ -29,7 +31,7 @@ class PlaylistPanel extends React.Component {
                 </div>
                 <ul className={"optionsContainer"}>
                     <li onClick={this.addPlaylist}>Add Playlist</li>
-                    <li>Edit Playlist</li>
+                    <li onClick={() => this.props.setCurView('playlistList')}>Select Playlist</li>
                     <li>Remove Playlist</li>
                     <li onClick={this.back}>Back</li>
                 </ul>

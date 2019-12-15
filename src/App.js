@@ -26,6 +26,10 @@ class App extends React.Component {
 
         this.setCurView = this.setCurView.bind(this);
         this.setPlaying = this.setPlaying.bind(this);
+        this.setCurPlaylist = this.setCurPlaylist.bind(this);
+        this.setCurPlaylistName = this.setCurPlaylistName.bind(this);
+
+        this.playlistEditRef = React.createRef();
     }
 
     setCurView(curView) {
@@ -35,21 +39,31 @@ class App extends React.Component {
     setPlaying(src) {
         this.setState({ playing: src});
     }
+    setCurPlaylist(curPlaylist) {
+        return new Promise(res => {
+            this.setState({ curPlaylist }, res);
+        });
+    }
+
+    setCurPlaylistName(newName) {
+        let newCurPlaylist = this.state.curPlaylist;
+        newCurPlaylist.name = newName;
+        this.setState({ curPlaylist: newCurPlaylist });
+    }
 
     render() {
         return (
             <div className="App">
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <PlaylistPanel setCurView={this.setCurView}/>
+                        <PlaylistPanel setCurView={this.setCurView} setCurPlaylist={this.setCurPlaylist}/>
                     </Grid>
-                    {this.state.curView === 'search' &&
-                        (<Grid item xs={9} style={{paddingLeft: '35px'}}>
-                        <SearchView/>
-                    </Grid>)}
+                    <Grid item xs={9} style={{paddingLeft: '35px'}}>
+                        {this.state.curView === 'search' && (<SearchView />)}
+                        {this.state.curView === 'playlistList' && (<PlaylistList playlists={data.getPlaylists()} setCurPlaylist={this.setCurPlaylist} setPlaying={this.setPlaying} setCurView={this.setCurView}/>)}
+                        {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlist={this.state.curPlaylist} setCurPlaylistName={this.setCurPlaylistName}/>)}
+                    </Grid>    
                 </Grid>
-                {this.state.curView === 'playlistList' && (<PlaylistList setPlaying={this.setPlaying} playlists={data.getPlaylists()} />)}
-                {this.state.curView === 'playlistEdit' && (<PlaylistEdit playlists={data.getPlaylists()} />)}
                 <audio controls={true}>
                     <source src={this.state.playing} type={"audio/mpeg"}/>
                 </audio>
