@@ -8,8 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import Language from '@material-ui/icons/Language';
+import LanguageIcon from '@material-ui/icons/Language';
+import AddIcon from '@material-ui/icons/Add';
 const fs = window.require('fs')
 const youtubedl = window.require('youtube-dl')
 
@@ -34,12 +34,16 @@ class SearchResult {
         { cwd: __dirname })
 
         // Will be called when the download starts.
+        if (!fs.existsSync('./data')) fs.mkdirSync('./data');
+        if (!fs.existsSync('./data/tracks')) fs.mkdirSync('./data/tracks');
+        
         video.on('info', function(info) {
-        console.log('Download started')
-        console.log('filename: ' + info._filename)
-        console.log('size: ' + info.size)
-        })
-        video.pipe(fs.createWriteStream('./src/tracks/'+this.title+'.mp3'))
+            console.log('Download started')
+            console.log('filename: ' + info._filename)
+            console.log('size: ' + info.size)
+        });
+
+        video.pipe(fs.createWriteStream('./data/tracks/'+this.title+'.mp3'));
     }
 }
 
@@ -94,10 +98,19 @@ export default class SearchView extends React.Component {
                     </Grid>
                     <Grid key={2} item xs={1}>
                         <Link href={res.getVideoLink()}>
-                            <Language />
+                            <LanguageIcon />
                         </Link>
-                        <Link href={res.downloadVideo()}>
-                            <GetAppIcon />
+                        <Link>
+                            <AddIcon onClick={() => {
+                                res.downloadVideo();
+                                let track = {
+                                    name: res.title,
+                                    author: res.channel,
+                                    path: `src/tracks/${res.title}-${res.videoId}.mp3`
+                                };
+                                this.props.addCurPlaylistTrack(track);
+                                this.props.setCurView('playlistEdit');
+                            }} />
                         </Link>
                     </Grid>
                 </Grid>

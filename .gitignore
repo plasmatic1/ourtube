@@ -22,6 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# node modules
 node_modules/
 
+# Data files 
 config.json
+data/
